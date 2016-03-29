@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 >{{ question.title }}</h1 >
+<p>{{question.text}}</p>
+
+{% for answer in answers %}
+<p>{{ answer.author }}</p>
+<p>{{ answer.text }}</p>
+{% endfor %}
+
+<form method="POST" action="/answer/">
+{% if request.err %}
+<h2 style="color:red">не удалось добавить ответ</h2>
+{% endif %}
+{% csrf_token %}
+<table>
+{{ form.as_table }}
+</table>
+</form>
+
+{% endblock %}
