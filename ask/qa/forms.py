@@ -26,25 +26,27 @@ class AnswerForm(forms.Form):
         )
 
 class SignupForm(forms.Form):
-	username = forms.CharField()
+    username = forms.CharField()
 	email = forms.EmailField()
 	password = forms.CharField(widget=forms.PasswordInput)
+    
     def save(self):
-    	User.objects.create_User(
-    		username=self.cleaned_data['username'],
-    		email=self.cleaned_data['email'],
-    		password=self.cleaned_data['password'],
-    	)
-    	return authenticate(
-    		username=self.cleaned_data['username'],
-    		password=self.cleaned_data['password'],
-    	)
+        User.objects.create_User(
+            username=self.cleaned_data['username'],
+            email=self.cleaned_data['email'],
+            password=self.cleaned_data['password'],
+        )
+        return authenticate(
+            username=self.cleaned_data['username'],
+            password=self.cleaned_data['password'],
+        )
 
 class LoginForm(forms.Form):
 	username = forms.CharField()
 	password = forms.CharField(widget=forms.PasswordInput)
-	def load(self):
-		return authenticate(
-			username=self.cleaned_data['username'],
-			password=self.cleaned_data['password'],
-		)
+	
+    def load(self):
+        return authenticate(
+            username=self.cleaned_data['username'],
+            password=self.cleaned_data['password'],
+        )

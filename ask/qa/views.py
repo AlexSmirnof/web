@@ -10,7 +10,7 @@ from qa.forms import AskForm, AnswerForm, SignupForm, LoginForm
 def ask(request, *args, **kwargs):
     if request.method == "POST":
         form = AskForm(request.POST)
-        if request.user.is_authenticated()
+        if request.user.is_authenticated():
             form._user = request.user
         if form.is_valid():
             q = form.save()
@@ -22,7 +22,7 @@ def ask(request, *args, **kwargs):
 @require_POST
 def answer(request, *args, **kwargs):
     form = AnswerForm(request.POST)
-    if request.user.is_authenticated()
+    if request.user.is_authenticated():
             form._user = request.user
     if form.is_valid():
         a = form.save()
